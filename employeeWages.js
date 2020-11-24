@@ -5,22 +5,24 @@ let fullTimeHours = 8;
 let partTimeHours = 4;
 let totalHours = 0;
 
-let randomValue = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+let randomValue = (min, max) => Math.floor(Math.random() * (max - min)) + min;//Generates Random Number between two numbers
 
-let totalWage = (time, workingHoursPerMonth) => {
+const getTotalHours = (time) => { //method to get total working Hours
     for(let i = 1; i <= 20; i++) {
-        if(randomValue(1, 6) > 2) {
+        if(randomValue(1, 6) < 4) {
            totalHours += time;
-           
-           if(totalHours > workingHoursPerMonth) {
-                totalHours -= time / 2;
-            }
-           if(totalHours == workingHoursPerMonth) {
-                break;
-           }
         }
     }
-    console.log('No of working days : ', totalHours / time, '\nHours Worked : ', totalHours);
+    return totalHours;
+}
+
+let totalWage = (time, workingHoursPerMonth) => { // Calculates total Wage
+    totalHours = getTotalHours(time);
+    if(totalHours > workingHoursPerMonth) {
+        totalHours = workingHoursPerMonth;
+    }
+    console.log('No of working days : ', totalHours / time, 
+                '\nHours Worked : ', totalHours);
     return wagePerHour * totalHours;
 }
 
