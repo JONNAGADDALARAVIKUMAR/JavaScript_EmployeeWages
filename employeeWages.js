@@ -10,7 +10,7 @@ const dailyAndTotalWage = [];
 let randomValue = (min, max) => Math.floor(Math.random() * (max - min)) + min;//Generates Random Number between two numbers
 
 const getTotalHours = (workingHoursPerDay, workingHoursPerMonth) => { //method to get total working Hours
-    for(let i = 1; i <= 20; i++) {
+    for(let day = 1; day <= 20; day++) {
        
         if(randomValue(1, 6) < 4 && totalHours < workingHoursPerMonth) {
            totalHours += workingHoursPerDay;
@@ -20,9 +20,9 @@ const getTotalHours = (workingHoursPerDay, workingHoursPerMonth) => { //method t
                totalHours -= workingHoursPerDay / 2;
                dailyWage = workingHoursPerDay * (wagePerHour / 2);
            }
-           dailyAndTotalWage.push(dailyWage, totalHours * 20);
+           dailyAndTotalWage.push(day, dailyWage, totalHours * 20);
         } else {
-            dailyAndTotalWage.push(0, totalHours * 20);
+            dailyAndTotalWage.push(day, 0, totalHours * 20);
         } 
     }
     return totalHours;
@@ -33,9 +33,9 @@ let totalWage = (workingHoursPerDay, workingHoursPerMonth) => { // Calculates to
     console.log('No of working days : ', totalHours / workingHoursPerDay, 
                 '\nHours Worked : ', totalHours);
     
-    console.log('Daily Wage\tTotal Wage');
-    for(let i = 0; i < dailyAndTotalWage.length; i = i+2) {
-        console.log(dailyAndTotalWage[i], '\t\t', dailyAndTotalWage[i+1]);
+    console.log('\nDay\tDaily Wage\tTotal Wage');
+    for(let i = 0; i < dailyAndTotalWage.length; i = i+3) {
+        console.log(dailyAndTotalWage[i], '\t', dailyAndTotalWage[i+1], '\t\t', dailyAndTotalWage[i+2]);
     }
     return wagePerHour * totalHours;
 }
